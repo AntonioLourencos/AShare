@@ -1,9 +1,12 @@
 {
-	"name": "remix-template-vercel",
+	"name": "ashare",
 	"private": true,
 	"description": "",
 	"license": "",
-	"sideEffects": false,
+	"author": {
+		"email": "antonio.oficialcontato@gmail.com",
+		"name": "Antonio Lourenço"
+	},
 	"scripts": {
 		"build": "remix build",
 		"dev": "remix dev "
@@ -32,8 +35,5 @@
 		"babel-plugin-inline-react-svg": "^2.0.1",
 		"eslint": "^8.11.0",
 		"typescript": "^4.5.5"
-	},
-	"engines": {
-		"node": ">=16"
 	}
 }
