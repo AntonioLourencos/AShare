@@ -9,6 +9,7 @@ const Button = (props: IButton): JSX.Element => {
 				<Styles.Container
 					onClick={props.action}
 					ghost={props.ghost}
+					reverseColor={props.reverseColor}
 					{...props.extend}
 				>
 					{...props.children}
@@ -21,6 +22,7 @@ const Button = (props: IButton): JSX.Element => {
 		<Styles.Container
 			onClick={props.action}
 			ghost={props.ghost}
+			reverseColor={props.reverseColor}
 			{...props.extend}
 		>
 			{...props.children}

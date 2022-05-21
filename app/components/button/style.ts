@@ -23,4 +23,11 @@ export const Container = styled.button<any>`
 			border: 1.5px solid #ffffff;
 			background-color: transparent;
 		`}
+
+	${({ reverseColor }) =>
+		reverseColor &&
+		css`
+			border-color: #000000;
+			color: #000000;
+		`}
 `;

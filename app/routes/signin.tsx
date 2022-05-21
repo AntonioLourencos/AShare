@@ -5,17 +5,35 @@ import signUpValidation from "../validation/signup";
 import Input from "~/styles/utils/Input";
 import Button from "~/components/button";
 import { Formik, Form } from "formik";
-import type ISignUp from "../interfaces/services/signUp";
+import Modal from "~/components/modal";
+import type ISignIn from "~/interfaces/services/signIn";
 
 const SignIn: React.FC = () => {
-	const initialValues: ISignUp = {
-		nickname: "",
+	const [resetPasswordModal, setResetPasswordModal] =
+		React.useState<boolean>(false);
+
+	const handleModal = () => {
+		setResetPasswordModal(true);
+	};
+
+	const initialValues: ISignIn = {
 		email: "",
 		password: "",
 	};
 
 	return (
 		<Styles.Container>
+			<Modal
+				setShow={setResetPasswordModal}
+				show={resetPasswordModal}
+				title="Forget Password"
+			>
+				<p>
+					Hey, we are sending you an email with a token so you can change your
+					password, so you don't have to worry.
+				</p>
+			</Modal>
+
 			<Styles.RightSide>
 				<span>Are You Ready to Edit?</span>
 				<Formik
@@ -29,10 +47,6 @@ const SignIn: React.FC = () => {
 							<Input name="email" type="email" />
 						</div>
 						<div>
-							<label htmlFor="nickname">Nickname:</label>
-							<Input name="nickname" type="text" />
-						</div>
-						<div>
 							<label htmlFor="password">Password:</label>
 							<Input name="password" type="password" />
 						</div>
@@ -43,6 +57,9 @@ const SignIn: React.FC = () => {
 						</div>
 					</Form>
 				</Formik>
+				<span className="forgotPassword" onClick={handleModal}>
+					Forget Password
+				</span>
 			</Styles.RightSide>
 			<Styles.LeftSide>
 				<img src={NewUser} alt="" loading="lazy" />

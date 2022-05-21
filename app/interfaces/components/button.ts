@@ -4,6 +4,7 @@ interface IButton {
 	extend?: React.ButtonHTMLAttributes<HTMLButtonElement>;
 	ghost?: boolean;
 	children?: any;
+	reverseColor?: boolean;
 }
 
 export type { IButton };

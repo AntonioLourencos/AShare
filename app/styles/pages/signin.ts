@@ -23,6 +23,11 @@ export const Container = styled.div`
 `;
 
 export const RightSide = styled.div`
+	height: 70%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+
 	color: #fff;
 	padding: 0px 50px;
 
@@ -48,6 +53,14 @@ export const RightSide = styled.div`
 			}
 		}
 	}
+
+	.forgotPassword {
+		margin-top: 20px;
+		font-size: 24px;
+		color: #ffffffc9;
+		cursor: pointer;
+		user-select: none;
+	}
 `;
 
 export const LeftSide = styled.div`
@@ -58,7 +71,6 @@ export const LeftSide = styled.div`
 
 	img {
 		width: 90%;
-		user-select: none;
 	}
 
 	@media (max-width: 900px) {

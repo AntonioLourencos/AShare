@@ -12,6 +12,9 @@ import Header from "./components/header";
 import Footer from "./components/footer";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Modal from "react-modal";
+
+Modal.setAppElement("body");
 
 export const links: LinksFunction = () => {
 	return [

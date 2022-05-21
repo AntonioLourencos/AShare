@@ -22,6 +22,10 @@ const GlobalStyles = createGlobalStyle`
         text-decoration:  none;
         color:  inherit;
     }
+
+    img, svg{
+      user-select: none;
+    }
 `;
 
 export default GlobalStyles;

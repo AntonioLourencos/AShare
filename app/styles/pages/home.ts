@@ -101,7 +101,6 @@ export const LeftSide = styled.div`
 
 	img {
 		width: 80%;
-		user-select: none;
 	}
 
 	@media (max-width: 900px) {

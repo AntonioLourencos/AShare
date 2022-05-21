@@ -7,21 +7,6 @@ import Button from "~/components/button";
 import { Formik, Form } from "formik";
 import type ISignUp from "../interfaces/services/signUp";
 
-export const meta = () => {
-	return [
-		{
-			title: "Sign In",
-			description:
-				"Have you thinked in share your account with facility before?",
-		},
-		{
-			title: "Sign In",
-			description:
-				"Have you thinked in share your account with facility before?",
-		},
-	];
-};
-
 const SignIn: React.FC = () => {
 	const initialValues: ISignUp = {
 		nickname: "",
@@ -32,7 +17,7 @@ const SignIn: React.FC = () => {
 	return (
 		<Styles.Container>
 			<Styles.RightSide>
-				<span>Are You Ready to Share?</span>
+				<span>Are You Ready to Edit?</span>
 				<Formik
 					onSubmit={(e) => console.log(e)}
 					initialValues={{ ...initialValues }}
@@ -42,6 +27,10 @@ const SignIn: React.FC = () => {
 						<div>
 							<label htmlFor="email">Email:</label>
 							<Input name="email" type="email" />
+						</div>
+						<div>
+							<label htmlFor="nickname">Nickname:</label>
+							<Input name="nickname" type="text" />
 						</div>
 						<div>
 							<label htmlFor="password">Password:</label>
