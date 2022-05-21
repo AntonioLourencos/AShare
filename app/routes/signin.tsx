@@ -6,7 +6,7 @@ import Input from "~/styles/utils/Input";
 import Button from "~/components/button";
 import { Formik, Form } from "formik";
 import Modal from "~/components/modal";
-import type ISignIn from "~/interfaces/services/signIn";
+import type ISignIn from "~/interfaces/services/request/signIn";
 
 const SignIn: React.FC = () => {
 	const [resetPasswordModal, setResetPasswordModal] =

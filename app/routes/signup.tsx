@@ -2,10 +2,10 @@ import React from "react";
 import * as Styles from "../styles/pages/signin";
 import NewUser from "../assets/NewUser.svg";
 import signUpValidation from "../validation/signup";
-import Input from "~/styles/utils/Input";
-import Button from "~/components/button";
+import Input from "../styles/utils/Input";
+import Button from "../components/button";
 import { Formik, Form } from "formik";
-import type ISignUp from "../interfaces/services/signUp";
+import type ISignUp from "../interfaces/services/request/signUp";
 
 const SignIn: React.FC = () => {
 	const initialValues: ISignUp = {
