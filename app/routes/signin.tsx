@@ -1,12 +1,12 @@
 import React from "react";
 import * as Styles from "../styles/pages/signin";
 import NewUser from "../assets/NewUser.svg";
-import signUpValidation from "../validation/signup";
-import Input from "~/styles/utils/Input";
 import Button from "~/components/button";
 import { Formik, Form } from "formik";
 import Modal from "~/components/modal";
 import type ISignIn from "~/interfaces/services/request/signIn";
+import signInValidation from "~/validation/services/signIn";
+import Input from "~/styles/utils/input";
 
 const SignIn: React.FC = () => {
 	const [resetPasswordModal, setResetPasswordModal] =
@@ -39,7 +39,7 @@ const SignIn: React.FC = () => {
 				<Formik
 					onSubmit={(e) => console.log(e)}
 					initialValues={{ ...initialValues }}
-					validationSchema={signUpValidation}
+					validationSchema={signInValidation}
 				>
 					<Form autoComplete="off">
 						<div>
