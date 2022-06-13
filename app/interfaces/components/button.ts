@@ -1,5 +1,8 @@
 interface IButton {
-	to?: string;
+	to?: {
+		path: string;
+		target?: "_blank" | "_parent" | "_self" | "_top";
+	};
 	action?: () => void;
 	extend?: React.ButtonHTMLAttributes<HTMLButtonElement>;
 	ghost?: boolean;

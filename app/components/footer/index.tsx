@@ -1,19 +1,24 @@
+import { type LinksFunction } from "@remix-run/node";
+import Icon from "../Icon";
 import * as Styles from "./styles";
-import { Github, Linkedin } from "react-bootstrap-icons";
 
+export const links: LinksFunction = () => {
+	return [
+		{
+			rel: "stylesheet",
+			href: "https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css",
+		},
+	];
+};
 const Footer = (): JSX.Element => {
 	const listOfSocial = [
 		{
-			props: {
-				href: "https://github.com/AntonioLourencos",
-			},
-			Icon: Github,
+			path: "https://github.com/AntonioLourencos",
+			name: "github",
 		},
 		{
-			props: {
-				href: "https://www.linkedin.com/in/antoniolourencos/",
-			},
-			Icon: Linkedin,
+			path: "https://www.linkedin.com/in/antoniolourencos/",
+			name: "linkedin",
 		},
 	];
 
@@ -21,11 +26,16 @@ const Footer = (): JSX.Element => {
 		<Styles.Container>
 			<span>Developed by Antonio Lourencos</span>
 			<div>
-				{listOfSocial.map((Social, index) => {
+				{listOfSocial.map((Social, key) => {
 					return (
-						<a key={index} {...Social.props} target="_blank">
-							<Social.Icon size={24} />
-						</a>
+						<Icon
+							key={key}
+							name={Social.name}
+							to={{
+								path: Social.path,
+								target: "_blank",
+							}}
+						/>
 					);
 				})}
 			</div>

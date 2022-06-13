@@ -15,6 +15,10 @@ export const Body = styled.div`
 export const Footer = styled.div`
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
+	justify-content: flex-end;
 	padding: 20px;
+
+	button {
+		margin-right: 15px;
+	}
 `;

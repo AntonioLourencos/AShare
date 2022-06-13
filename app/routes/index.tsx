@@ -1,7 +1,7 @@
 import React from "react";
-import Button from "~/components/button";
-import * as Styles from "../styles/pages/home";
-import PhoneWorld from "../assets/PhoneWorld.svg";
+import Button from "@Components/button";
+import * as Styles from "@Styles/pages/home";
+import PhoneWorld from "@App/assets/PhoneWorld.svg";
 import { type MetaFunction } from "@remix-run/node";
 
 export const meta: MetaFunction = () => {
@@ -10,7 +10,7 @@ export const meta: MetaFunction = () => {
 		title: "Home - AShare",
 		charset: "utf-8",
 		keywords:
-			"AntonioLourencos, Antonio Lourenço, A Share, AShare, Antonio Share",
+			"AntonioLourencos, Antonio Lourenço, A Share, AShare, Antonio Share, Divulgar Conta, Clone Linktree, GitHub, RemixJS, Remix, React, SWR",
 		description: description,
 	};
 };
@@ -27,7 +27,7 @@ const Home: React.FC = () => {
 					<span>
 						In a few clicks you set up a page to share all your networks.
 					</span>
-					<Button ghost to="/signup">
+					<Button ghost to={{ path: "/signup" }}>
 						CREATE AN ACCOUNT
 					</Button>
 				</Styles.RightSide>

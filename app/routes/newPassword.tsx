@@ -1,11 +1,19 @@
 import React from "react";
-import * as Styles from "../styles/pages/newPassword";
-import Input from "~/styles/utils/input";
-import Button from "~/components/button";
+import * as Styles from "@Styles/pages/newPassword";
+import Input from "@Styles/utils/input";
+import Button from "@Components/button";
 import { Formik, Form } from "formik";
-import type IPassword from "~/interfaces/services/request/newPassword";
-import newPasswordValidation from "~/validation/services/newPassword";
+import type IPassword from "@Types/services/request/newPassword";
+import newPasswordValidation from "@Validation/services/newPassword";
 import { useSearchParams } from "@remix-run/react";
+import { type MetaFunction } from "@remix-run/node";
+
+export const meta: MetaFunction = () => {
+	return {
+		title: "Reset Password - AShare",
+		charset: "utf-8",
+	};
+};
 
 const NewPassword: React.FC = () => {
 	const [searchParams] = useSearchParams();
@@ -18,7 +26,7 @@ const NewPassword: React.FC = () => {
 		return (
 			<Styles.Container>
 				<h1>Token not found</h1>
-				<Button to="/">Back</Button>
+				<Button to={{ path: "/" }}>Back</Button>
 			</Styles.Container>
 		);
 	}

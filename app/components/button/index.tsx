@@ -1,11 +1,10 @@
-import { Link } from "@remix-run/react";
-import { type IButton } from "~/interfaces/components/button";
-import * as Styles from "./style";
+import { type IButton } from "@Types/components/button";
+import * as Styles from "./styles";
 
 const Button = (props: IButton): JSX.Element => {
 	if (props.to) {
 		return (
-			<Link to={props.to}>
+			<a href={props.to.path} target={props.to.target}>
 				<Styles.Container
 					onClick={props.action}
 					ghost={props.ghost}
@@ -14,7 +13,7 @@ const Button = (props: IButton): JSX.Element => {
 				>
 					{...props.children}
 				</Styles.Container>
-			</Link>
+			</a>
 		);
 	}
 

@@ -1,4 +1,10 @@
-import type { LinksFunction, MetaFunction } from "@remix-run/node";
+/* eslint-disable react-hooks/exhaustive-deps */
+import {
+	json,
+	type LinksFunction,
+	type LoaderFunction,
+	type MetaFunction,
+} from "@remix-run/node";
 import {
 	Links,
 	LiveReload,
@@ -6,13 +12,14 @@ import {
 	Outlet,
 	Scripts,
 	ScrollRestoration,
+	useLoaderData,
 } from "@remix-run/react";
 import GlobalStyles from "./styles/global";
 import Header from "./components/header";
 import Footer from "./components/footer";
 import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import Modal from "react-modal";
+import { useEffect } from "react";
 
 Modal.setAppElement("body");
 
@@ -24,6 +31,14 @@ export const links: LinksFunction = () => {
 			rel: "stylesheet",
 			href: "https://fonts.googleapis.com/css2?family=Work+Sans&display=swap",
 		},
+		{
+			rel: "stylesheet",
+			href: "https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css",
+		},
+		{
+			rel: "stylesheet",
+			href: "https://cdn.jsdelivr.net/npm/react-toastify@9.0.4/dist/ReactToastify.css",
+		},
 	];
 };
 
@@ -33,10 +48,25 @@ export const meta: MetaFunction = () => ({
 	viewport: "width=device-width,initial-scale=1",
 });
 
+export const loader: LoaderFunction = async () => {
+	return json({
+		ENV: {
+			SERVICE_INTERNAL_BASEURL: process.env.SERVICE_INTERNAL_BASEURL,
+		},
+	});
+};
+
 export default function App() {
+	const data = useLoaderData();
+
+	useEffect(() => {
+		window.env = data.ENV;
+	}, []);
+
 	return (
 		<html lang="en">
 			<head>
+				<title>AShare</title>
 				<Meta />
 				<Links />
 				{typeof document === "undefined" ? "__STYLES__" : null}
@@ -47,7 +77,15 @@ export default function App() {
 				<Outlet />
 				<ScrollRestoration />
 				<Footer />
-				<ToastContainer />
+				<ToastContainer
+					position="top-left"
+					autoClose={3000}
+					newestOnTop={true}
+					closeOnClick={true}
+					limit={3}
+					pauseOnHover={false}
+					pauseOnFocusLoss={false}
+				/>
 				<Scripts />
 				<LiveReload />
 			</body>

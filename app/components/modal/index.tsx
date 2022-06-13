@@ -4,7 +4,13 @@ import { type IModal } from "~/interfaces/components/modal";
 import Button from "../button";
 import * as Styles from "./styles";
 
-const Modal = ({ setShow, show, title, children }: IModal): JSX.Element => {
+const Modal = ({
+	setShow,
+	show,
+	title,
+	children,
+	handles,
+}: IModal): JSX.Element => {
 	const handleClose = () => {
 		setShow(false);
 	};
@@ -42,8 +48,9 @@ const Modal = ({ setShow, show, title, children }: IModal): JSX.Element => {
 
 			<Styles.Footer>
 				<Button action={handleClose} ghost reverseColor>
-					Concluir
+					Close
 				</Button>
+				{handles && handles}
 			</Styles.Footer>
 		</ReactModal>
 	);
