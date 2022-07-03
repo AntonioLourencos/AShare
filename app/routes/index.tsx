@@ -3,6 +3,7 @@ import Button from "@Components/button";
 import * as Styles from "@Styles/pages/home";
 import PhoneWorld from "@App/assets/PhoneWorld.svg";
 import { type MetaFunction } from "@remix-run/node";
+import { useAuth } from "@App/hooks/auth";
 
 export const meta: MetaFunction = () => {
 	const description = "In Few Clicks Share your midias!";
@@ -16,6 +17,8 @@ export const meta: MetaFunction = () => {
 };
 
 const Home: React.FC = () => {
+	const { auth } = useAuth();
+
 	return (
 		<Styles.Container>
 			<Styles.Landing>
@@ -27,9 +30,19 @@ const Home: React.FC = () => {
 					<span>
 						In a few clicks you set up a page to share all your networks.
 					</span>
-					<Button ghost to={{ path: "/signup" }}>
-						CREATE AN ACCOUNT
-					</Button>
+
+					{auth ? (
+						<Button
+							ghost
+							to={{ path: `/p/${auth.data.profile.nickname}/dashboard` }}
+						>
+							DASHBOARD
+						</Button>
+					) : (
+						<Button ghost to={{ path: "/signup" }}>
+							CREATE AN ACCOUNT
+						</Button>
+					)}
 				</Styles.RightSide>
 				<Styles.LeftSide>
 					<img src={PhoneWorld} alt="" loading="lazy" />

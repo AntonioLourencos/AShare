@@ -19,7 +19,7 @@ import Header from "./components/header";
 import Footer from "./components/footer";
 import { ToastContainer } from "react-toastify";
 import Modal from "react-modal";
-import { useEffect } from "react";
+import { AuthProvider } from "./hooks/auth";
 
 Modal.setAppElement("body");
 
@@ -50,7 +50,7 @@ export const meta: MetaFunction = () => ({
 
 export const loader: LoaderFunction = async () => {
 	return json({
-		ENV: {
+		env: {
 			SERVICE_INTERNAL_BASEURL: process.env.SERVICE_INTERNAL_BASEURL,
 		},
 	});
@@ -58,10 +58,6 @@ export const loader: LoaderFunction = async () => {
 
 export default function App() {
 	const data = useLoaderData();
-
-	useEffect(() => {
-		window.env = data.ENV;
-	}, []);
 
 	return (
 		<html lang="en">
@@ -72,22 +68,29 @@ export default function App() {
 				{typeof document === "undefined" ? "__STYLES__" : null}
 			</head>
 			<body>
-				<GlobalStyles />
-				<Header />
-				<Outlet />
-				<ScrollRestoration />
-				<Footer />
-				<ToastContainer
-					position="top-left"
-					autoClose={3000}
-					newestOnTop={true}
-					closeOnClick={true}
-					limit={3}
-					pauseOnHover={false}
-					pauseOnFocusLoss={false}
-				/>
-				<Scripts />
-				<LiveReload />
+				<AuthProvider>
+					<GlobalStyles />
+					<Header />
+					<Outlet />
+					<ScrollRestoration />
+					<Footer />
+					<ToastContainer
+						position="top-left"
+						autoClose={3000}
+						newestOnTop={true}
+						closeOnClick={true}
+						limit={3}
+						pauseOnHover={false}
+						pauseOnFocusLoss={false}
+					/>
+					<script
+						dangerouslySetInnerHTML={{
+							__html: `window.env = ${JSON.stringify(data.env)}`,
+						}}
+					/>
+					<Scripts />
+					<LiveReload />
+				</AuthProvider>
 			</body>
 		</html>
 	);

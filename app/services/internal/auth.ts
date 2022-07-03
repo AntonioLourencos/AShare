@@ -8,7 +8,7 @@ import InternalAPI from "../config/internal.client";
 const Auth = {
 	async SignIn(data: ISignInRequest) {
 		const { data: response } = await InternalAPI.post<ISignInResponse>(
-			"signIn",
+			"auth/signin",
 			data
 		);
 
@@ -16,7 +16,7 @@ const Auth = {
 	},
 	async SignUp(data: ISignUpRequest) {
 		const { data: response } = await InternalAPI.post<ISignUpResponse>(
-			"signUp",
+			"auth/signup",
 			data
 		);
 

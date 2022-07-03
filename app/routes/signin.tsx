@@ -5,10 +5,13 @@ import Button from "@Components/button";
 import Modal from "@Components/modal";
 import signInValidation from "@Validation/services/signIn";
 import Input from "@Styles/utils/input";
-import { Formik, Form } from "formik";
+import { Formik, Form, type FormikHelpers } from "formik";
 import type ISignIn from "@Types/services/request/signIn";
 import { type MetaFunction } from "@remix-run/node";
 import Services from "@App/services";
+import { useAuth } from "@App/hooks/auth";
+import { toast } from "react-toastify";
+import SessionAuth from "@App/sessions/auth";
 
 export const meta: MetaFunction = () => {
 	const description = "Are you ready to edit your profile and share?";
@@ -22,6 +25,7 @@ export const meta: MetaFunction = () => {
 };
 
 const SignIn: React.FC = () => {
+	const { setAuth } = useAuth();
 	const [resetPasswordModal, setResetPasswordModal] =
 		React.useState<boolean>(false);
 
@@ -29,6 +33,24 @@ const SignIn: React.FC = () => {
 
 	const handleConfirmResetPassword = async () => {
 		return handleModal();
+	};
+
+	const handleSubmit = async (
+		data: ISignIn,
+		formikHelper: FormikHelpers<ISignIn>
+	) => {
+		try {
+			const dataValidated = await signInValidation.validate(data);
+			const response = await Services.Internal.Auth.SignIn(dataValidated);
+
+			setAuth({ data: response });
+
+			return formikHelper.resetForm();
+		} catch (error: any) {
+			if (error.errors[0]) {
+				return toast.error(error.errors[0]);
+			}
+		}
 	};
 
 	const initialValues: ISignIn = {
@@ -60,11 +82,7 @@ const SignIn: React.FC = () => {
 			</Modal>
 			<Styles.RightSide>
 				<span>Are You Ready to Edit?</span>
-				<Formik
-					onSubmit={Services.Internal.Auth.SignIn}
-					initialValues={{ ...initialValues }}
-					validationSchema={signInValidation}
-				>
+				<Formik onSubmit={handleSubmit} initialValues={{ ...initialValues }}>
 					<Form autoComplete="on">
 						<div>
 							<label htmlFor="email">Email:</label>

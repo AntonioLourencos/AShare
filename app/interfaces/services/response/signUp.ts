@@ -1,4 +1,4 @@
-export default interface ISignUp {
+export interface ISignUp {
 	profile: {
 		avatar: string;
 		nickname: string;
@@ -8,3 +8,5 @@ export default interface ISignUp {
 		expiressAt: string;
 	};
 }
+
+export default ISignUp;
